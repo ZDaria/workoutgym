@@ -1,0 +1,25 @@
+from sqlalchemy import Column, Integer, Date, Float, String
+from db import Base, engine
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True)
+    firstname = Column(String())
+    lastname = Column(String())
+    age = Column(Integer())
+    weight = Column(Float())
+    height = Column(Float())
+    birthday = Column(Date())
+    mail = Column(String())
+
+    def __repr__(self):
+        return f"User {self.id}, {self.firstname}"
+
+#class Trainings(Base):
+
+
+
+if __name__ == '__main__':
+    Base.metadata.create_all(bind=engine)
