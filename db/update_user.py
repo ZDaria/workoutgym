@@ -1,4 +1,4 @@
-from db import db_session
+from db.db_connection import db_session
 from models import User
 
 user = User.query.first()
