@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, Date, Float, String
-from db import Base, engine
+from .db_connection import Base, engine
 
 
 class User(Base):
@@ -12,13 +12,9 @@ class User(Base):
     weight = Column(Float())
     height = Column(Float())
     birthday = Column(Date())
-    mail = Column(String())
 
     def __repr__(self):
-        return f"User {self.id}, {self.firstname}"
-
-#class Trainings(Base):
-
+        return f"User {self.id}, {self.firstname}, {self.lastname}"
 
 
 if __name__ == '__main__':
