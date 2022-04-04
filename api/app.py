@@ -1,6 +1,7 @@
 #!flask/bin/python
 from flask import abort, Flask, jsonify
-from db.users import get
+
+from db.users import get, get_user_by_id
 app = Flask(__name__)
 
 
@@ -12,9 +13,9 @@ def get_users():
     return users
 
 
-@app.route('/workoutgym/api/v1.0/users/<int:users_id>', methods=['GET'])
-def get_users(users_id):
-    users = get()
+@app.route('/workoutgym/api/v1.0/users/<int:user_id>', methods=['GET'])
+def get_users_by_id(user_id):
+    users = get_user_by_id(user_id)
     if len(users) == 0:
         abort(404)
     return users
