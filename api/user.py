@@ -1,26 +1,38 @@
-import requests
-from requests import Session
-import json
-from requests.auth import HTTPBasicAuth
+#!flask/bin/python
+from flask import abort, Flask, jsonify
 
-url = "http://127.0.0.1:5000/api/user"
-user = 'Jack'
-password = 'Jones'
-
-hostname = "127.0.0.1:5000/"
-session = Session()
-session.auth = (user, password)
+from db.users import get, get_user_by_id
+app = Flask(__name__)
 
 
-def main():
-
-    res = requests.get(url)
-
-    if res.status_code == 200:
-        print(res.status_code)
-    else:
-        print(res.status_code)
+# GET ../user/<string: firstname>
+@app.route('/workoutgym/api/v1.0/user/<string:name>')
+def get_user(firstname):
+    pass
 
 
-if __name__ == "__main__":
-    main()
+# GET ../user
+@app.route('/workoutgym/api/v1.0/user')
+def get_users():
+    users = get()
+    if len(users) == 0:
+        abort(404)
+    return users
+
+
+# POST ../user data: {firstname:, lastname:, age:, weight:, height:, birthday:}
+@app.route('/user', method=['POST'])
+def create_user():
+    pass
+
+
+@app.route('/workoutgym/api/v1.0/users/<int:user_id>', methods=['GET'])
+def get_users_by_id(user_id):
+    users = get_user_by_id(user_id)
+    if len(users) == 0:
+        abort(404)
+    return users
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -9,4 +9,3 @@ session.auth = (user, password)
 
 auth = session.post('http://' + hostname)
 response = session.get('http://' + hostname + '/api/user')
-
