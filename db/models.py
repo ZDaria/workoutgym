@@ -14,7 +14,7 @@ class User(Base):
     birthday = Column(Date())
 
     def __repr__(self):
-        return f"User {self.id}, {self.firstname}, {self.lastname}"
+        return f"{self.id}, {self.firstname}, {self.lastname}"
 
 
 if __name__ == '__main__':
